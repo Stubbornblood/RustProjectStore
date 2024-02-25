@@ -12,3 +12,9 @@ slint = "1.4"
 
 [build-dependencies]
 slint-build = "1.4"
+
+[package.metadata.bundle]
+name = "my-first-rust-project"
+identifier = "io.github.Stubbornblood.RustProjectStore"
+description = "A desktop app that divides up income"
+
