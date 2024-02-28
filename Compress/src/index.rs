@@ -9,8 +9,10 @@ use std::io::BufReader;
 use std::time::Instant;
 
 fn main(){
+
     if args().len()!=3{
         println!("Usage : `source` `target`");
+        return;
     }
 
     let mut input = BufReader::new(File::open(args().nth(1).unwrap()).unwrap());
@@ -18,7 +20,7 @@ fn main(){
     let output = File::create(args().nth(2).unwrap()).unwrap();
 
     let mut encoder = GzEncoder::new(output,Compression::default());
-
+    
     let start = Instant::now();
 
     copy(&mut input,&mut encoder).unwrap();
@@ -26,8 +28,10 @@ fn main(){
     let mut output = encoder.finish().unwrap();
 
     println!("Source len : {:?}",input.get_ref().metadata().unwrap().len());
+
     println!("Target len : {:?}",output.metadata().unwrap().len());
-    println!("Elasped : {:?}",start.elapsed());
+
+    println!("Elapsed : {:?}",start.elapsed())
 
 
 }
